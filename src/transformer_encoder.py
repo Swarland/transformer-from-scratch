@@ -28,3 +28,23 @@ class TransformerEncoderBlock(nn.Module):
         X_2 = self.ffn_norm(X_1 + F)
 
         return X_2, attention_weights
+
+
+class TransformerEncoder(nn.Module):
+
+    def __init__(self, d_model, num_heads, d_ff, num_layers):
+        super().__init__()
+
+        self.layers = nn.ModuleList(
+            [TransformerEncoderBlock(
+                d_model=d_model, num_heads=num_heads, d_ff=d_ff) 
+                for _ in range(num_layers)]
+        )
+
+    def forward(self, X):
+        layer_weights = []
+        for layer in self.layers:
+            X, attention_weights = layer(X)
+            layer_weights.append(attention_weights)
+        return X, layer_weights
+
