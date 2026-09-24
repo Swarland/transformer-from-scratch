@@ -13,7 +13,8 @@ dependencies = [
     "pandas",
     "scikit-learn",
     "torch",
-    "transformers"
+    "transformers",
+    "pytest"
 ]
 
 [tool.setuptools]
