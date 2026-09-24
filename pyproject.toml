@@ -13,11 +13,7 @@ dependencies = [
     "pandas",
     "scikit-learn",
     "torch",
-    "transformers",
-    "xgboost",
-    "matplotlib",
-    "seaborn",
-    "scipy",
+    "transformers"
 ]
 
 [tool.setuptools]
