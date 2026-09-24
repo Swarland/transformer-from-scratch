@@ -6,10 +6,10 @@ Rather than use nn.Transformer or pretrained models I am building it from first 
 
 # Current Roadmap:
 
-- Scaled dot-product attention
-- Single-head self-attention
-- Multi-head attention
-- Positional encoding
+- Scaled dot-product attention - Completed
+- Single-head self-attention - Completed
+- Multi-head attention - Completed
+- Positional encoding - Completed
 - Transformer encoder block
 - Biological sequence dataset
 - Sequence classification
