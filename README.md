@@ -10,7 +10,7 @@ Rather than use nn.Transformer or pretrained models I am building it from first 
 - Single-head self-attention - Completed
 - Multi-head attention - Completed
 - Positional encoding - Completed
-- Transformer encoder block
+- Transformer encoder block - Completed
 - Biological sequence dataset
 - Sequence classification
 - Baseline comparison
