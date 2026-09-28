@@ -1,6 +1,6 @@
 from torch.utils.data import Dataset
 import torch
-from src.dna_tokenizer import tokenize_dna
+from src.dna_tokenizer import tokenize_dna, CLS_TOKEN_ID
 from torch.utils.data import DataLoader
 
 class DNADataset(Dataset):
@@ -14,12 +14,17 @@ class DNADataset(Dataset):
         return len(self.sequences)
 
     def __getitem__(self, idx):
+
         ## tokenize sequence here
         sequence = self.sequences[idx]
-        ## this avoids having scaler tensor instead of 1D
-        label = torch.tensor([self.labels[idx]], dtype=torch.float32)
 
-        token_dna = torch.tensor(tokenize_dna(sequence), dtype=torch.long)
+        ## add the CLS token at the beginning of the sequence
+        sequence_tokens = [CLS_TOKEN_ID] + tokenize_dna(sequence)
+        ## this [] avoids having scaler tensor instead of 1D
+        label = torch.tensor([self.labels[idx]], dtype=torch.float32)
+        token_dna = torch.tensor(sequence_tokens, dtype=torch.long)
+
+        
 
         return token_dna, label
 

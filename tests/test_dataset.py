@@ -14,14 +14,14 @@ def test_dataset_tokenization():
     labels = [0,1]
     dataset = DNADataset(sequences, labels)
     token_dna, label = dataset[0]
-    assert torch.equal(token_dna, torch.tensor([0, 1, 2, 3])), 'dataset tokenization off'
+    assert torch.equal(token_dna, torch.tensor([5, 0, 1, 2, 3])), 'dataset tokenization off'
 
 def test_dataset_output_shape():
     sequences = ['ACGT', 'AACC']
     labels = [0,1]
     dataset = DNADataset(sequences, labels)
     token_dna, label = dataset[0]
-    assert token_dna.shape == (4,), 'dataset output malformed'
+    assert token_dna.shape == (5,), 'dataset output malformed'
     assert label.shape == (1,), 'dataset output malformed'
 
 def test_dataset_output_dtype():
