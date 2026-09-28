@@ -19,6 +19,8 @@ class DNATransformer(nn.Module):
         X = self.embedding(X)
         X = self.positional_encoding(X)
         X, layer_weights = self.encoder(X)
+
         X_pooled = X.mean(dim=1)
         X_classifier = self.classifier(X_pooled)
+        
         return X_classifier, layer_weights
