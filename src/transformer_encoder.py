@@ -4,10 +4,10 @@ from src.attention import MultiHeadSelfAttention
 
 class TransformerEncoderBlock(nn.Module):
 
-    def __init__(self, d_model, num_heads, d_ff):
+    def __init__(self, d_model, num_heads, d_ff, max_len):
         super().__init__()
 
-        self.attention = MultiHeadSelfAttention(d_model, num_heads)
+        self.attention = MultiHeadSelfAttention(d_model, num_heads, max_len)
         self.attention_norm = nn.LayerNorm(d_model)
 
         self.ffn = nn.Sequential(
@@ -32,12 +32,12 @@ class TransformerEncoderBlock(nn.Module):
 
 class TransformerEncoder(nn.Module):
 
-    def __init__(self, d_model, num_heads, d_ff, num_layers):
+    def __init__(self, d_model, num_heads, d_ff, num_layers, max_len):
         super().__init__()
 
         self.layers = nn.ModuleList(
             [TransformerEncoderBlock(
-                d_model=d_model, num_heads=num_heads, d_ff=d_ff) 
+                d_model=d_model, num_heads=num_heads, d_ff=d_ff, max_len=max_len) 
                 for _ in range(num_layers)]
         )
 

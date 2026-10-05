@@ -12,12 +12,13 @@ class DNATransformer(nn.Module):
 
         self.embedding = nn.Embedding(vocab_size, d_model)
         self.positional_encoding = PositionalEncoding(d_model, max_len)
-        self.encoder = TransformerEncoder(d_model, num_heads, d_ff, num_layers)
+        self.encoder = TransformerEncoder(d_model, num_heads, d_ff, num_layers, max_len)
         self.classifier = nn.Linear(d_model, 1)
 
     def forward(self, X):
         X = self.embedding(X)
-        X = self.positional_encoding(X)
+        ## Bypassing absolute positional encoding in favor of relative position
+        #X = self.positional_encoding(X)
         X, layer_weights = self.encoder(X)
         ## Grab CLS classifier
         X_pooled = X[:,0,:]
