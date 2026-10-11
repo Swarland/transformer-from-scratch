@@ -2,7 +2,7 @@ import random
 def generate_synthetic_dna_no_motif(n_sequences, seq_len, motif):
     sequence_list = []
     bases = ['A', 'C', 'G', 'T']
-    for i in range(int(n_sequences/2)):
+    for i in range(int(n_sequences)):
         while True:
             seq = ''.join(random.choices(bases, k=seq_len))
             if motif not in seq:
@@ -13,7 +13,7 @@ def generate_synthetic_dna_no_motif(n_sequences, seq_len, motif):
 def generate_synthetic_dna_scramble_motif(n_sequences, seq_len, motif, scramble_motif):
     sequence_list = []
     bases = ['A', 'C', 'G', 'T']
-    for i in range(int(n_sequences/2)):
+    for i in range(int(n_sequences)):
         while True:
             remaining_length = seq_len - len(motif)
             background = ''.join(random.choices(bases, k=remaining_length))
@@ -29,7 +29,7 @@ def generate_synthetic_dna_scramble_motif(n_sequences, seq_len, motif, scramble_
 def generate_synthetic_dna_with_motif(n_sequences, seq_len, motif):
     sequence_list = []
     bases = ['A', 'C', 'G', 'T']
-    for i in range(int(n_sequences/2)):
+    for i in range(int(n_sequences)):
         remaining_length = seq_len - len(motif)
         
         background = ''.join(random.choices(bases, k=remaining_length))
